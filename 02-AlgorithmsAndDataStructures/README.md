@@ -1,0 +1,1 @@
+This folder contains resources and exercises about Algorithms and Data Structures.

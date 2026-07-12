@@ -1,0 +1,1 @@
+This folder contains resources and exercises about Maths such as Linear Algebra and Statistics for AI.
