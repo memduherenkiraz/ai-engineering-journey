@@ -8,7 +8,7 @@
 #     for i in range(len(arr)):   # Dizinin sonuna kadar giden dış döngü.
 #         swapped = False   # Eleman değişme olup olmadığını kontrol eden bayrak.
 #         for j in range(0, len(arr) - i - 1):   # Her defasında ardışık elemanları karşılaştırmak için iç döngü.
-#         # range'in len(arr) - i - 1 olmasının sebebi, her dış döngüde en büyük eleman en sona gelecek. Oyüzden tekrar bakmamıza gerek yok.
+#         # range'in len(arr) - i - 1 olmasının sebebi, her dış döngüde en büyük eleman en sona gelecek. O yüzden tekrar bakmamıza gerek yok.
 #             if arr[j] > arr[j + 1]:
 #                 # Swapping
 #                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
@@ -20,5 +20,46 @@
 # bubble_sort(array)
 
 # print("Sorted List:", array)
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+
+# Selection Sort
+
+# def selection_sort(arr):
+#     for i in range(len(arr) - 1):   # Mevcut pozisyonu baştan sona kaydırır.
+#         min_ind = i   # En küçük elemanın indeksini tutar.
+
+#         for j in range(i + 1, len(arr)):   # Mevcut pozisyondan sona kadar tarar.
+#             if arr[j] < arr[min_ind]:   # En küçük elemanı bulur.
+#                 min_ind = j   # En küçük elemanın indeksini saklar.
+        
+#         # En küçük eleman zaten doğru yerdeyse swap yapma.
+#         if min_ind != i:
+#             arr[i], arr[min_ind] = arr[min_ind], arr[i]
+
+# arr = [14, 12, 10, 15, 11]
+
+# selection_sort(arr)
+# print("Sorted Dizi:", arr)
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+
+# Insertion Sort
+
+# def insertion_sort(arr):
+#     for i in range(1, len(arr)): # 1'den başlar çünkü ilk eleman sıralı kabul edildi.
+#         key = arr[i]
+#         j = i - 1  # key'in solundaki elemanın indeksini tutar.
+
+#         while j >= 0 and key < arr[j]:
+#             arr[j + 1] = arr[j]
+#             j -= 1
+        
+#         arr[j + 1] = key
+
+# arr = [14, 12, 10, 15, 11]
+
+# insertion_sort(arr)
+# print("Sorted Dizi: ", arr)
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
