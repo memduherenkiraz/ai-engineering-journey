@@ -177,10 +177,14 @@
 
 # Örnek: Öğrencinin vize ve final puanlarının ortalamasını gösteren kod bloğu.
 
-midterm = int(input("Enter Your Midterm Score:"))
-final = int(input("Enter Your Final Score:"))
+# midterm = int(input("Enter Your Midterm Score:"))
+# final = int(input("Enter Your Final Score:"))
 
-average = (midterm + final) / 2
-print(f"Average Score: {average:.3f}")
+# average = (midterm + final) / 2
+# print(f"Average Score: {average:.3f}")
 
 #----------------------------------------------------------------------------------------------------------------
+
+# text = "I need to learn Python. Python is a cool language. python is good."
+# print(text.count("Python"))
+
