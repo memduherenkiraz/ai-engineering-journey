@@ -178,3 +178,4 @@ Randomu kullanmak için import etmemiz gerekir.  "import random"
 - random.seed(42)
 - print(random.randint(1, 100)) # Her zaman 82 üretir. Programı kapatıp yeniden çalıştırdığına bile.
 - print(random.randint(1, 100)) # Bu ise her zaman 15 üretir.
+
