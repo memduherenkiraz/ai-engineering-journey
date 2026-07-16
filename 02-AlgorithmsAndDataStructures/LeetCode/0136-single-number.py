@@ -2,8 +2,7 @@
 LeetCode 136 - Single Number
 https://leetcode.com/problems/single-number/
 
-Problem: Verilen bir dizide her eleman iki kez geçiyor, sadece bir 
-eleman tek kez geçiyor. O elemanı bul.
+Problem: Verilen bir dizide her eleman iki kez geçiyor, sadece bir eleman tek kez geçiyor. O elemanı bul.
 Kısıt: O(n) zaman karmaşıklığı ve O(1) ekstra yer kullanmalısın.
 """
 

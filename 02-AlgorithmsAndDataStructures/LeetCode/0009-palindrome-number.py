@@ -2,7 +2,7 @@
 LeetCode 9 - Palindrome Number
 https://leetcode.com/problems/palindrome-number/
 
-Problem: Verilen bir tam sayının palindrom olup olmadığını bul 
+Problem: Verilen bir tam sayının palindrom olup olmadığını bul.
 (baştan okunuşu ile sondan okunuşu aynı mı).
 """
 
@@ -34,8 +34,6 @@ if isPalindrome(number):
 else:
     print("Sayi Polindrome Değil")
 
-# Zaman Karmaşıklığı: O(n) - n, sayının basamak sayısı; while döngüsü basamak
-#                      sayısı kadar dönüyor, for döngüsü de en fazla n/2 kere çalışıyor.
+# Zaman Karmaşıklığı: O(n) - n, sayının basamak sayısı; while döngüsü basamak sayısı kadar dönüyor, for döngüsü de en fazla n/2 kere çalışıyor.
 # Yer Karmaşıklığı: O(n) - basamaklar "bas" listesinde saklanıyor.
-# Not: Negatif sayılar palindrom kabul edilmez (- işareti tersten okunca
-#      anlamsızlaşır), bu yüzden en başta erken çıkış (early return) yapıldı.
+# Not: Negatif sayılar palindrom kabul edilmez (- işareti tersten okununca anlamsızlaşır), bu yüzden en başta erken çıkış (early return) yapıldı.

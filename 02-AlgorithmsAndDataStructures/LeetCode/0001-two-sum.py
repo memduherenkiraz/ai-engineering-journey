@@ -47,10 +47,3 @@ print(a)
 
 # Zaman Karmaşıklığı: O(n) - tek geçiş
 # Yer Karmaşıklığı: O(n) - hash map için ekstra alan
-
-# ============================================
-# NOTLAR
-# ============================================
-# İlk çözümümde her eleman için tüm diziyi tekrar tarıyordum, bu yüzden karmaşıklık O(n²) oluyordu.
-# Hash map kullanarak "daha önce gördüğüm sayıları" saklayıp, karşılığını (complement) anlık kontrol edince O(n)'e düştü. 
-# Zaman kazanmak için O(n) ekstra yer kullanmayı kabul ediyoruz - bu klasik bir "time-space tradeoff".
