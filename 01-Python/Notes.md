@@ -433,88 +433,236 @@ print(mylist)
  
 ### append()
  
-Elemanı listenin sonuna ekler.
+Listenin sonuna belirtilen elemanı ekler.
  
 ```python
+mylist = [12, 13, "kalem", "kağıt", 14, "silgi"]
 mylist.append(3.14)
 ```
+
+### insert()
  
-### pop()
- 
-Son elemanı siler; `pop(index)` verilen indexi siler.
+Listenin belirtilen indeksine belirtilen elemanı ekler. Diğer elemanlar sağa kayar.
  
 ```python
-mylist2 = [3, 4, 5, 6, 7]
-mylist2.append("sayı")
-enSon = mylist2.pop()
-mylist2.pop(0)
+mylist = [12, 13, "kalem", "kağıt", 14, "silgi"]
+mylist.insert(3, True)   # 3. indexe True değerini ekledi. "kağıt" değerinden sonrası sağa kaydı.
+```
+### extend()
+
+Bir listenin elemanlarını diğer listenin sonuna sırayla ekler.
+
+```python
+liste1 = [1, 3, 5, 7]
+liste2 = [2, 4, 6, 8]
+liste1.extend(liste2)  # liste2'yi liste1'in sonuna ekledi.
+```
+
+### pop()
+
+Bir listedeki son elemanı siler. Geriye sildiği elemanı döndürür.
+
+Eğer `pop(index)` şeklinde kullanılırsa belirtilen indeksteki elemanı siler.
+ 
+```python
+liste = [1,2,3,4]
+last = liste.pop()
+print(liste)
+print(last)
 ```
 ### join()
  
-### index() / count()
- 
+### index()
+
+Verilen değerin listedeki indexini gösterir.
+
 ```python
-mylist3 = ["a", "b", 12, "d", 45]
-print(mylist3.index("b"))  # kaçıncı indexte olduğunu bulur
- 
-mylist4 = ["e", "e", "e", "r", "r", "n"]
-print(mylist4.count("e"))  # kaç adet olduğunu bulur
+
+mylist = ["a", "b", 12, "d", 45]
+print(mylist.index("b"))  # Çıktı: 1
+
+```
+
+### count()
+
+Verilen değerin listede kaç adet olduğunu gösterir.
+
+```python
+mylist = ["e", "e", "e", "r", "r", "n"]
+print(mylist.count("e"))  # Çıktı: 3
 ```
  
-### remove() / del / insert()
+### remove()
+
+Verilen değeri, listede ilk gördüğü yerde siler. Eğer aynı değerden birden fazla varsa ilkini siler.
+
+```python
+mylist = ["e", "e", "e", "r", "r", "n"]
+mylist.remove("r")  # Listede gördüğü ilk "r" değerini sildi. Yani 3. indeksteki "r" silindi.
+print(mylist)
+```
+
+### clear()
+
+Listedeki tüm elemanları siler.
+
+```python
+liste = [1, 2, 3, 4]
+liste.clear()
+print(liste)   # Çıktı: []
+```
+
+### del
+
+İndeks numarasına göre silme işlemi yapar.
+
+```python
+liste = ["ev", "ağaç", "araba", "yol", "insan"]
+del liste[2]   # Listenin 2. indeksindeki "ağaç" elemanını sildi.
+print(liste)
+```
+
+### reverse()
+
+Listeyi ters olarak sıralar.
+
+```python
+mylist = [1, 2, 3]
+mylist.reverse()
+print(mylist)
+```
+
+### Listelerde Kopyalama
+
+Bir listeyi başka bir değişken içine atarsak iki listede bellekte aynı alanda tutulur. Yani kopyalama işlemi yapılmış olmaz.
+
+```python
+list1 = [1, 2, 3]
+list2 = list1   # list1'i list2'ye attık.
+
+# Eğer ben list2'de bir işlem yaparsam list1'de etkilenir.
+list2.append(4)
+print(list1)   # Görüldüğü gibi list1'de işlem yapmama rağmen ekleme işlemi list1'i etkiledi.
+print(list2)
+```
+
+`list()`fonksiyonunu kullanarak kopyalama işlemi yapılabilir.
+
+```python
+list1 = [1, 2, 3]
+list2 = list(list1)
+
+list2.append(4)
+print(list1)   # list() fonksiyonu ile kopyalama yaptığımızdan list2'de yapılan işlemden etkilenmedi.
+print(list2)
+```
+
+`Slicing` işlemini kullanarakta kopyalama işlemi yapılabilir.
+
+```python
+list1 = [1, 2, 3]
+list2 = list[:]
+
+list2.append(4)
+print(list1)   # Slicing ile kopyalama yaptığımızdan list2'de yapılan işlemden etkilenmedi.
+print(list2)
+```
+
+### copy()
+
+Bir listeyi başka bir değişkene kopyalar.
+
+```python
+listeA = [1, 2, 3, 4]
+listeB = listeA.copy()  # Bellekte yeni bir alana kopyalar.
+```
+
+### sorted()
+
+Listeyi sıralamak için kullanılır. Metinsel ifadeleri alfabetik olarak, sayısal ifadeleri küçükten büyüğe sıralar.
+
+`sorted()` fonksiyonu orijinal listeyi değiştirmez ve yeni listeyi döndürür.
+
+- sorted(reverse = True): reverse parametresini True yaptığımızda tersten sıralar.
  
 ```python
-mylist4.remove("r")  # spesifik elemanı siler
- 
-liste = ["ev", "ağaç", "araba", "yol", "insan"]
-del liste[2]              # index 2'yi siler
-liste.insert(2, "köpek")  # index 2'ye ekler
+mylist = ["elma", "erik", "cilek", "armut", "portakal"]
+newlist = sorted(mylist)
+print(mylist, "-----", newlist)
+```
+
+### sort()
+
+Listeyi sıralamak için kullanılır. Metinsel ifadeleri alfabetik olarak, sayısal ifadeleri küçükten büyüğe sıralar.
+
+`sort()` fonksiyonu orijinal listeyi değiştirir ve değer döndürmez.
+
+```python
+sayilar = [99, 2, 13, 7, 21, 79]
+sayilar.sort(reverse = True)   # Ters sıralamak için reverse parametresini True yaptık. sorted()'da da kullanılabilir.
+print(sayilar)
+```
+
+Metinsel ifadeler sıralanırken büyük-küçük hassaslığından dolayı önce büyük harfle başlayanlar sonra küçük harfle başlayanlar sıralanır.
+
+- sort(key=str.lower): key parametresine str.lower değerini verirsek, liste elemanlarını hepsini küçük harfe çevirir.
+
+```python
+list = ["Grape", "apple", "Banana"]
+list.sort(key=str.lower)   # key parametresini kullanmasaydık: ["Banana", "Grape", "apple"]
+print(list)   # Çıktı: ["apple", "Banana", "Grape"]
+```
+
+### id()
+
+Bir değişkenin bellekte hangi adreste tutulduğunu gösterir.
+
+```python
+name = "Eren"
+print(id(name))   # Çıktı: 2031000303344
 ```
  
 ### Listeleri Birleştirme ve İç İçe Listeler
+
+Listeler "+" operatörü ile birleştirilebilir.
  
 ```python
 my_list1 = [1, 2, 3]
 my_list2 = ["a", "b", "c"]
  
-my_lists = my_list1 + my_list2       # birleştirme
-nested = [my_list1, my_list2]        # iç içe liste
- 
-numbers = list(range(3, 30, 2))      # 3'ten 30'a kadar 2'şer artan liste
- 
-lists = [["eren", "kiraz"], ["emre", "vişne"]]
-print(lists[0][1])  # Çıktı: kiraz
+my_lists = my_list1 + my_list2
 ```
- 
-### sorted() vs sort()
- 
-`sorted()` yeni bir liste döndürür, orijinali değiştirmez; `sort()` orijinal listeyi değiştirir ve değer döndürmez.
- 
+
+Ayrıca listeler içinde liste tutabilir.
+
 ```python
-mylist7 = ["elma", "erik", "cilek", "armut", "portakal"]
-print(sorted(mylist7))                 # alfabetik sıralı yeni liste
-print(sorted(mylist7, reverse=True))   # ters sıralama
- 
-sayilar2 = [99, 2, 13, 7, 21, 79]
-sayilar2.sort()                        # listeyi kendisi değiştirir
-sayilar2.sort(reverse=True)
+my_list1 = [1, 2, 3]
+my_list2 = ["a", "b", "c"]
+
+nested = [my_list1, my_list2]
+print(nested)
 ```
- 
-### extend() / clear() / copy()
- 
+İç içe listelerde indeksleme "[][]" şeklinde yapılır.
+
+İlk parantez dış listenin indeksini ikinci parantez iç listenin indeksini alır.
+
 ```python
-liste1 = [1, 3, 5, 7]
-liste2 = [2, 4, 6, 8]
-liste1.extend(liste2)  # liste2'yi liste1'e ekler
- 
-liste = [1, 2, 3, 4]
-liste.clear()           # tüm elemanları siler
- 
-listeA = [1, 2, 3, 4]
-listeB = listeA.copy()  # bellekte yeni bir alana kopyalar
+lists = [[1, 2], [3, 4]]
+print(lists[0][1])  # Çıktı: 2
 ```
- 
-> **id()** fonksiyonu, bir değişkenin bellekte nerede tutulduğunu gösterir: `id(isim)`
+
+- İç İçe Listelerde Kopyalama
+
+İç içe listelerde kopyalama işlemi copy modülündeki deepcopy() fonksiyonuyla gerçekleşir.
+
+```python
+import copy
+
+list1 = [[1, 2], [3, 4]]
+list2 = copy.deepcopy(list1)
+
+print(list2)
+```
  
 ---
  
