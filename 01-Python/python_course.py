@@ -188,4 +188,180 @@
 # text = "I need to learn Python. Python is a cool language. python is good."
 # print(text.count("Python"))
 
+#----------------------------------------------------------------------------------------------------------------
+
+# Bir dizideki puanlar arasından en yüksek puandan FARKLI olan ikinci en yüksek puanı (runner-up) bulup yazdırmak.
+
+# Tuzak: En yüksek puanı birden fazla katılımcı almış olabilir. Bu durumda dizi sadece sıralanıp sondan ikinci eleman alınırsa yanlış sonuç
+# çıkar (en yüksek puanın kendi kopyası runner-up sanılır). "Runner-up" demek, en yüksekten FARKLI olan bir sonraki en yüksek puan demektir.
+
+
+# n = int(input("Sayiyi Giriniz:"))
+# arr = map(int, input("Liste Elemanlarını Giriniz:").split())
+
+# arr = list(arr)
+# biggest = float('-inf')
+# bigger = float('-inf')
+
+# for i in range(n):
+#     if arr[i] > biggest:
+#         bigger = biggest
+#         biggest = arr[i]
+#     elif arr[i] < biggest and arr[i] > bigger:
+#         bigger = arr[i]
+
+# print(bigger)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# Bir sınıftaki öğrencilerin isim ve notlarını nested list olarak saklayıp,
+# ikinci en düşük nota sahip öğrenci(ler)in isimlerini alfabetik sırayla,
+# her biri ayrı satırda yazdırmak.
+
+# listem = []
+# for i in range(int(input("Kaç Kişi:"))):
+#     name = input("İsim Giriniz:")
+#     score = float(input("Score Giriniz:"))
+#     listem.append([name, score])
+
+
+# lowest = float('inf')
+# lower = float('inf')
+
+# names = []
+
+# for i in range(len(listem)):
+#     if listem[i][1] < lowest:
+#         lower = lowest
+#         lowest = listem[i][1]
+#     elif listem[i][1] < lower and listem[i][1] > lowest:
+#         lower = listem[i][1]
+
+# for i in range(len(listem)):
+#     if listem[i][1] == lower:
+#         names.append(listem[i][0])
+
+# names.sort()
+# for i in names:
+#     print(i)
+
+# ALTERNATİF (Tek for döngüsü)
+
+# listem = []
+# lowest = second = float('inf')
+# names_lowest = []
+# names_second = []
+
+# for _ in range(int(input("Kişi Sayısı: "))):
+#     name = input("Name: ")
+#     score = float(input("Score: "))
+#     listem.append([name, score])
+
+#     if score < lowest:
+#         second = lowest
+#         names_second = names_lowest
+#         lowest = score
+#         names_lowest = [name]
+#     elif score == lowest:
+#         names_lowest.append(name)
+#     elif score < second:
+#         second = score
+#         names_second = [name]
+#     elif score == second:
+#         names_second.append(name)
+
+# print("================================================")
+# for isim in sorted(names_second):
+#     print(isim)
+
+#=====================================================================================================
+
+# Bir tam sayı dizisindeki pozitif, negatif ve sıfır elemanların oranını
+# (toplam eleman sayısına bölünmüş hallerini), 6 ondalık basamak hassasiyetle, her biri ayrı satırda yazdırmak.
+
+# def plusMinus(arr):
+#     n = len(arr)
+#     pos = 0
+#     neg = 0
+#     zero = 0
+    
+#     for i in arr:
+#         if i > 0:
+#             pos += 1
+#         elif i < 0: 
+#             neg += 1
+#         else:
+#             zero += 1
+    
+#     ratio = [pos/n, neg/n, zero/n]
+    
+#     for i in ratio:
+#         print(f"{i:.6f}")
+
+
+# n = int(input("Eleman Sayisi: ").strip())
+# arr = list(map(int, input("Elemanlar: ").rstrip().split()))
+
+# plusMinus(arr)
+
+#=====================================================================================================
+
+# Bir string içinde verilen sub-string'ten kaç adet olduğunu bulan kod bloğunu yazınız.
+"""
+String: ABCDCDC
+Sub-String: CDC
+Count: 2
+"""
+
+# Kendi Çözümüm
+
+# def count_substring(string, sub_string):
+#     count = 0
+#     for i in range(len(string) - len(sub_string) + 1):
+#         state = 0
+#         for j in range(len(sub_string)):
+#             if string[j + i] == sub_string[j]:
+#                 state += 1
+#         if state == len(sub_string):
+#             count += 1
+#     return count
+
+# string = input().strip()
+# sub_string = input().strip()
+    
+# count = count_substring(string, sub_string)
+# print(count)
+
+
+# Kısa Çözüm
+
+# def count_substring(string, sub_string):
+#     n = len(sub_string)
+#     return sum(
+#         1 for i in range(len(string) - n + 1)
+#         if string[i:i+n] == sub_string
+#     )
+
+# string = input().strip()
+# sub_string = input().strip()
+    
+# count = count_substring(string, sub_string)
+# print(count)
+
+
+# def solve(s: str):
+#     return " ".join(i.capitalize() for i in s.split())
+
+# string = "1 w 2 r 3g"
+
+# print(solve(string))
+
+
+
+# def print_formatted(number):
+#     for i in range(1, number):
+#         print(f"{i}   {(oct(i)[2:])}   {hex(i)[2:].upper()}   {bin(i)[2:]}")
+
+# number = int(input("Sayiyi Giriniz:"))
+# print_formatted(number)
 
