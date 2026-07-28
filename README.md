@@ -6,7 +6,6 @@ As a computer engineering graduate, I am documenting my disciplined learning jou
 In this process, I am studying the following topics in order:
   Python, 
   Algorithms and Data Structures,
-  Foundations of Mathematics (Linear Algebra, Calculus, Statistics),
   Machine Learning,
   Deep Learning,
   Modern LLM/AI agent systems.
