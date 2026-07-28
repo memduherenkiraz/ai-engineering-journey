@@ -413,6 +413,22 @@ boy = float(input("boyunuzu giriniz: "))
 ```
  
 ---
+
+## Python Collections
+
+- List: Sıralı, Değiştirilebilir, Yinelenebilir
+Listeler elemanları sıralı şekilde tutar. Listelerde eleman ekleme, silme, değiştirme gibi işlemler yapılamaz. Listelerde bir elemandan birden fazla olabilir.
+
+- Tuple: Sıralı, Değiştirilemez, Yinelenebilir.
+Tuplelar elemanları sıralı şekilde tutar. Tuplelarda eleman ekleme, silme, değiştirme gibi işlemler yapılamaz. Tuplelarda bir elemandan birden fazla olabilir.
+
+- Set: Sırasız, Değiştirilemez, Yinelenemez
+Setlerde elemanlar sırasızdır. Elemanlar değiştirilemez ama eleman ekleme ve silme işlemleri yapılabilir. Setlerde bir elemandan sadece bir tane olur.
+
+-Dictionary: Sıralı, Değiştirilebilir, Yinelenemez
+Dictler elemanları key/value şeklinde sıralı halde tutar. Hem key hem de value değerleri değiştirilebilir, eleman ekleme ve silme gibi işlemler yapılabilir. Key'den dolayı aynı key'e sahip elemanlar olamaz.
+
+---
  
 ## Liste (List)
  
@@ -429,6 +445,14 @@ print(meyveler[-1])  # sondan başlar
 mylist = [12, 13, "kalem", "kağıt", 14, "silgi"]
 mylist[2] = "kalemtıraş"  # index 2'yi (3. eleman) değiştirdik
 print(mylist)
+```
+
+- list() fonksiyonu ile de liste oluşturabiliriz. **list((eleman1, eleman2, eleman3, ...))** şeklinde kullanılır.
+
+```python
+numbers = list((1, 2, 3))
+print(numbers)
+print(type(numbers))
 ```
  
 ### append()
@@ -663,7 +687,70 @@ list2 = copy.deepcopy(list1)
 
 print(list2)
 ```
- 
+
+## Comprehension İşlemi
+
+Comprehension işlemi, bir iterable(list, set, dict, string, range gibi) üzerinden yeni bir iterable oluşturmanın kısayoludur.
+
+- For döngüsü
+
+```python
+print([num for num in range(5)])   # Çıktı: [0,1,2,3,4]
+```
+
+Comprehension işleminde if-else kullanılabilir ancak bazı kurallar vardır.
+
+- Eğer if koşulu döngüden sonra kullanılırsa filtredir ve else kullanılmaz.
+
+```python
+numbers = [1, 2, 3, 4, 5]
+print([num for num in numbers if num % 2 == 0])
+# Eğer sayı çiftse ekle diye bir koşul(filtre) koyduk. Elemanın kullanıp kullanılmayacağını belirler.
+```
+
+- Eğer if-else döngüden önce kullanılırsa ifadedir. Yani değer üreten kısımdır. else bloğu zorunludur.
+
+```python
+numbers = [1, 2, 3, 4, 5]
+print(["çift" if num % 2 == 0 else "tek" for num in numbers])
+# if-else koşula göre değer ürettiği için, if-else bir ifadedir ve for döngüsünden önce yazılır. Elemanın koşula göre nasıl kullanılacağını gösterir. 
+```
+
+**Örnek**
+
+```python
+# Bir listede, 10'dan küçük olan elemanlar çiftse karesi, tekse küpünü alıp listeye ekleyen bir comprehension işlemi yapalım.
+
+numbers = [3, 11, 27, 6, 90, 56, 8, 5]
+
+print([num**2 if num % 2 == 0 else num**3 for num in numbers if num < 10])   # Çıktı: [27, 36, 64, 125]
+
+# Döngüden önceki if-else sayının tek veya çift olduğuna göre değer ürettiği için bir ifadedir. else zorunludur ve döngüden önce yazılmalıdır.
+
+# Döngüden sonraki if, sayının 10'dan küçük olup olmadığına göre elemanların kullanılıp kullanılmayacağını belirliyor. Yani 10'dan küçük sayıları geçiren bir filtre gibi çalışıyor. Bu yüzden döngüden sonra yazılmalıdır ve else kullanılmaz. 
+```
+
+### İç İçe Comprehension
+
+- **Örnek-1**
+
+```python
+matris = [[i * 3 + j for j in range(3)] for i in range(3)]
+print(matris)   # Çıktı: [[0, 1 , 2], [3, 4, 5], [6, 7 , 8]]
+```
+
+- **Örnek-2**
+
+```python
+matris = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+# İç içe for döngüleri dıştan içe şekilde yazılır.
+# İlk for döngüsünde matris içindeki satırlar alınır.
+# İkinci for döngüsünde satır içindeki elemanlar alınır.
+flatten = [item for line in matris for item in line]
+print(flatten)   # Çıktı: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
 ---
  
 ## Sözlük (Dictionary)
@@ -714,12 +801,128 @@ Birden çok veri tipini barındırabilen, **tekrarlı elemanları saklamayan** v
  
 ```python
 küme = {"python", "python", "python", "C#", "Java", "HTML", "CSS", 4, 5, 4, 8}
-print(küme)  # tekrarlar tek bir elemana indirgenir
- 
-küme1 = set("memduh eren kiraz")  # string'in her karakterini bir kez alır
-küme.add("programlama dilleri")   # yeni eleman ekleme
+print(küme)  # tekrarlar tek bir elemana indirgenir.
+
+# Set'teki elemanları tek tek yazdırma.
+for item in küme:
+    print(item)
 ```
- 
+
+- set() fonksiyonu ile de set oluşturulabilir. **set((eleman1, eleman2, eleman3, ...))** şeklinde kullanılır.
+
+```python
+numbers = set((1, 2, 3))
+print(numbers)
+print(type(numbers))
+
+# Bir stringi set() fonksiyonuna verdiğimizde her karakteri bir kez olacak şekilde eleman olarak alır.
+küme1 = set("memduh eren kiraz")
+```
+
+### add()
+
+add() fonksiyonu set'e yeni eleman eklemek için kullanılır.
+
+```python
+kume = {1, 2, 3, 4, 5}
+kume.add(6)
+print(kume)
+```
+
+### remove()
+
+Set içinde belirli bir elemanı silmek için kullanılır.
+
+- Eğer set içinde olmayan bir elemanı silmeye çalışırsak KeyError hatası verir.
+
+```python
+fruits = {"orange", "cherry", "grape", "banana", "apple"}
+
+fruits.remove("grape")   # "grape" elemanını siler.
+print(fruits)
+
+fruits.remove("strawberry") # KeyError hatası verdi.
+print(fruits)
+```
+
+### discard()
+
+Set içinde belirli bir elemanı silmek için kullanılır.
+
+- Eğer set içinde olmayan bir elemanı silmeye çalışırsak hata vermez.
+
+```python
+fruits = {"orange", "cherry", "grape", "banana", "apple"}
+
+fruits.discard("grape")   # "grape" elemanını siler.
+print(fruits)
+
+fruits.discard("strawberry") # Hata vermedi.
+print(fruits)
+```
+
+### pop()
+
+Set içinde rastgele bir elemanı siler. Geriye sildiği elemanı döndürür. Setlerde sıra olmadığından silme işlemi rastgele olur.
+
+```python
+fruits = {"orange", "cherry", "grape", "banana", "apple"}
+
+popped = fruits.pop()
+print(popped)   # Çıktı: banana -> Rastgele olarak seçer.
+```
+
+### clear()
+
+Bir set içindeki tüm elemanları siler.
+
+```python
+fruits = {"orange", "cherry", "grape", "banana", "apple"}
+
+fruits.clear()
+print(fruits)   # Çıktı: set() -> Boş set
+```
+
+### del
+
+Seti içindeki elemanlar ve değişkenin kendisiyle beraber komple siler. Sonrasında erişilmek istendiğinde NameError verir.
+
+```python
+fruits = {"orange", "cherry", "grape", "banana", "apple"}
+
+del fruits
+
+print(fruits)   # NameError: "fruits" tanımlanmadı.
+```
+
+### update()
+
+Bir setin ile bir liste, tuple veya set yapılarını birleştirmek için kullanılır.
+
+```python
+fruits1 = {"apple", "cherry"}
+fruits2 = {"banana", "strawberry"}
+fruits3 = {"orange", "grape"}
+
+fruits1.update(fruits2)   # fruits1'in içine fruits2'yi ekledi.
+print(fruits1)
+
+# Toplu birleştirme
+fruits1.update(fruits2, fruits3)   # Üçünü fruits1 içinde birleştirdi.
+```
+- Bu işlem kümelerde(set) birleşim işlemine denk gelir. "|" operatörü ile iki set'i birleştirebiliriz.
+
+```python
+fruits1 = {"apple", "cherry"}
+fruits2 = {"banana", "strawberry"}
+fruits3 = {"orange", "grape"}
+
+# Üç seti de birleştirelim ve fruits1'de tutalım.
+fruits1 |= fruits2 | fruits3
+print(fruits1)
+```
+
+
 ### Kümelere Özel İşlemler
  
 ```python
@@ -758,14 +961,50 @@ print(demet[-2])      # sondan 2. index
 print(demet[:4])      # baştan 4. indexe kadar (4 dahil değil)
 print(demet.count("e"))
 ```
+
+- tuple() fonksiyonu ile de tuple oluşturabiliriz. **tuple((eleman1, eleman2, eleman3, ...)) şeklinde kullanılır.
+
+```python
+numbers = tuple((1, 2, 3))
+print(numbers)
+print(type(numbers))
+```
  
 > Tuple'a yeni eleman ekleme (`demet.add(...)`) veya eleman değiştirme (`demet[8] = ...`) **hata verir**, çünkü tuple immutable'dır.
- 
+
+- Packing ve Unpacking İşlemi
+
+Bir tuple oluşturup içine eleman ekleme işlemine packing denir.
+
+Tuple içindeki elemanları çıkararak değişkenlere atama işlemine ise unpacking denir. 
+
+Unpacking işlemi için tuple'daki eleman sayısı kadar değişken oluşturmak gerekir.
+"*" işareti ile daha az değişkene tuple içindeki birden fazla elemanı liste şeklinde ekleyebiliriz.
+
+```python
+# Packing: Klasik tuple oluşturma işlemi
+numbers = (1, 2, 3, 4, 5)
+
+# Unpacking: 5 elemanlı bir tuple var. 3 adet değişken oluşturdum. son değişkene * işaretini koyduk.
+(x, y, *z) = numbers
+print(x)   # Çıktı: 1
+print(y)   # Çıktı: 2
+print(z)   # Çıktı: [3, 4, 5, 6, 7]
+
+```
+
 ---
  
 ## Karar Yapıları
  
 ### If - Elif - Else
+
+If-Else blokları karar ve koşul yapılarıdır. Bir kodun hangi koşulda ne yapacağını belirtir.
+
+- Eğer birden fazla koşul varsa o zaman "elif" yapısını kullanabiliriz. elif, "else if" gibi çalışır ve
+yanına koşul alır.
+
+- else yapısı, if ve elif yapılarındaki koşulların hiç biri sağlanmadıysa çalışan yapıdır.
  
 ```python
 vize = int(input("VİZE NOTUNUZU GİRİNİZ: "))

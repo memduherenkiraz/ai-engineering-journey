@@ -365,3 +365,215 @@ Count: 2
 # number = int(input("Sayiyi Giriniz:"))
 # print_formatted(number)
 
+#=====================================================================================================
+
+# Sayı Tahmin Oyunu
+
+# import random
+
+# number = random.randint(1, 100)
+# right = 1
+
+# while right <= 8:
+#     guess = int(input("Enter an Integer: "))
+
+#     if guess < number:
+#         print("Increase your guess!")
+#     elif guess > number:
+#         print("Decrease your guess!")
+#     else:
+#         print(f"You found the number of your {right}. guess.")
+#         print(f"The number is: {number}")
+#         break
+#     right += 1
+
+#=====================================================================================================
+
+
+# Girilen sayının asal olup olmadığını gösteren kod bloğunu yazınız.
+# Bir sayı kendisinin kareköküne kadar olan sayılara bölünemiyorsa diğer sayılara hiç bölünmez.
+# Örneğin 16 sayısı asal mı kontrol edelim. 
+# Bunun için normalde 16'yı 2'den 15'e kadar sayılarla bölünüp bölünmediğine bakmamız lazım.
+# Ancak Kök(16) = 4 ise sadece 2'den 4'e kadar olan sayılara bölünüp bölünmediğine bakmamız yeterlidir.
+
+
+# number = int(input("Sayı Giriniz: "))
+# isprime = True
+
+# if number == 1:
+#     isprime = False
+# else:   
+#     for i in range(2, int(number ** 0.5) + 1):
+#         if number % i == 0:
+#             isprime = False
+#             break
+
+#     if isprime:
+#         print("Asal")
+#     else:
+#         print("Asal Değil")
+
+#=====================================================================================================
+
+# Girilen sayıya kadar olan asal sayıları gösteren kod bloğunu yazınız.
+
+# number = int(input("Sayi Giriniz: "))
+
+# if number <= 1:
+#     print("1'den büyük bir sayı giriniz.")
+# else:
+#     for i in range(2, number + 1):
+#         isprime = True
+
+#         for j in range(2, int(i ** 0.5) + 1):
+#             if i % j == 0:
+#                 isprime = False
+#                 break
+
+#         if isprime:
+#             print(i, end = " ")
+
+#=====================================================================================================
+
+# Verilen iki sayının EBOB ve EKOK değerlerini bulan kod bloğunu yazınız.
+# İki sayının EBOB'u, iki sayıyıda ortak bölen en büyük sayıdır.
+# İki sayının EKOK'u, sayıların çarpımlarının EBOB değerine bölünmesiyle bulunur.
+
+# num1 = int(input("Birinci Sayiyi Giriniz: "))
+# num2 = int(input("Ikinci Sayiyi Giriniz: "))
+
+# def ebob(n1, n2):
+#     lowest = min(n1, n2)
+
+#     for i in range(lowest, 0, -1):
+#         if (n1 % i == 0) and (n2 % i == 0):
+#             eb = i
+#             break
+
+#     return eb
+
+# def ekok(n1, n2):
+#     return int((n1 * n2) / ebob(n1, n2))
+
+# print(f"EBOB: {ebob(num1, num2)} \nEKOK: {ekok(num1, num2)}")
+    
+#=====================================================================================================
+
+# Fibonacci
+# 0 1 1 2 3 5 8 13 21 ...
+
+# Verilen sayı kadar fibonacci dizini yazdıran kod bloğunu yazınız.
+
+# stage = int(input("Adim Sayisini Giriniz: "))
+
+# def fibonacci(n):
+#     if n <= 0:
+#         return 0
+#     elif n == 1:
+#         return 1
+
+#     return fibonacci(n - 1) + fibonacci(n - 2)
+
+# for i in range(stage):
+#     print(fibonacci(i), end=" ")
+
+#=====================================================================================================
+
+# Comprehension
+
+# numbers = [3, 11, 24, 6, 91, 56, 8, 5]
+
+# # Listede çift elemanları yazdıran comprehension
+# print([num for num in numbers if num % 2 == 0])
+
+# # Listede çift elemanlara "çift", tek elemanlara "tek" diyen comprehension.
+# print(["Çift" if num % 2 == 0 else "Tek" for num in numbers])
+
+# # Listede 10'dan küçük elemanları, çiftse karesini, tekse küpünü gösteren comprehension.
+# print([num ** 2 if num % 2 == 0 else num ** 3 for num in numbers if num < 10])
+
+#=====================================================================================================
+
+# Sınav ortalaması hesaplama
+
+# midterm = float(input("Vize: "))
+# final = float(input("Final: "))
+
+# ort = (midterm * 0.4) + (final * 0.6)
+
+# if midterm < 70: print("Midterm is less than 70. You Failed!!")
+# else:
+#     if ort >= 90:
+#         print("A")
+#     elif 90 < ort <= 70:
+#         print("B")
+#     elif 70 < ort <= 50:
+#         print("C")
+#     else:
+#         print("F")
+# print(ort)
+
+#=====================================================================================================
+
+# x = int(input())
+# y = int(input())
+# z = int(input())
+# n = int(input())
+
+# treed = [[i, j, k] for i in range(x+1) for j in range(y+1) for k in range(z+1) if i+j+k != n]
+
+# print(treed)
+
+#=====================================================================================================
+
+# Swap Case
+# s = input("Kelime Gir: ")
+# new_s = ""
+
+# for i in s:
+#     if i.isupper():
+#         new_s += i.lower()
+#     else:
+#         new_s  += i.upper()
+
+# print(new_s)
+
+#=====================================================================================================
+
+# Text Wrap
+# Verilen bir stringi verilen uzunluğa kadar bölüp her uzunlukta alt satıra geçir.
+# Örneğin st = "abcdefgh" width = 2
+
+"""
+ Çıktı:
+ab
+cd
+ef
+gh
+"""
+
+# text = str(input("Metin Giriniz: "))
+# max_width = int(input("Uzunluk Giriniz: "))
+
+# blocks = []   # Maksimum uzunluktaki stringleri tutacak.
+
+# for i in range(0, len(text), max_width):
+#     blocks.append(text[i: i + max_width])
+
+# print("\n".join(blocks))
+
+#=====================================================================================================
+
+
+# fruits1 = {"apple", "cherry"}
+# fruits2 = {"banana", "strawberry"}
+# fruits3 = {"orange", "grape"}
+
+# union = fruits1 | fruits2 | fruits3
+
+# popped = union.pop()
+
+# print(popped)
+# print(union)
+
+#=====================================================================================================
