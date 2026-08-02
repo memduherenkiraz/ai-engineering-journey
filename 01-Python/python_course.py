@@ -577,3 +577,43 @@ gh
 # print(union)
 
 #=====================================================================================================
+
+# kume1 = {1,2,3,4,5}
+# kume2 = {4,5,6,7,8}
+
+# kume3 = {12,34,54,56}
+# kume4 = {12,56, 98, 68}
+
+# # difference_update()
+# kume1.difference_update(kume2)
+# print(kume1)
+
+# # "-=" operatörü
+# kume3 -= kume4
+# print(kume3)
+
+# kume = {1,2,3,4,5}
+# alt_kume = {2,4}
+
+# #issubset()
+# print(alt_kume.issubset(kume))   # Çıktı: True
+# # "<=" operatörü
+# print(alt_kume <= kume)   # Çıktı: True
+
+# # issuperset()
+# print(kume.issuperset(alt_kume))   # Çıktı: True
+# # ">=" operatörü
+# print(kume >= alt_kume)
+
+#=====================================================================================================
+
+ahmet_dersler = {"Matematik", "Fizik", "Algoritma", "Kimya"}
+ayse_dersler = {"Algoritma", "Kimya", "Biyoloji", "Tarih"}
+
+print(ahmet_dersler & ayse_dersler)
+print(ayse_dersler & ahmet_dersler)
+print(ahmet_dersler - ayse_dersler)
+print(ayse_dersler - ahmet_dersler)
+print(ahmet_dersler | ayse_dersler)
+print(ahmet_dersler ^ ayse_dersler)
+print(ayse_dersler ^ ahmet_dersler)

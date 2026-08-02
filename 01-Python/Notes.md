@@ -922,20 +922,119 @@ fruits1 |= fruits2 | fruits3
 print(fruits1)
 ```
 
+### union()
 
-### Kümelere Özel İşlemler
- 
+- List, tuple, set gibi iki koleksiyon değişkenini birleştirir. Orijinal koleksiyonlara dokunmadan yeni bir set oluşturur.
+
+```python
+fruits1 = {"apple", "cherry"}
+fruits2 = ("banana", "strawberry")
+fruits3 = ["orange", "grape"]
+
+result = fruits1.union(fruits2, fruits3)   # Bir set, bir list ve bir tuple; yeni bir set içinde birleştiler.
+
+print(result)
+```
+
+### difference()
+
+- Küme fark işlemini yapan fonksiyondur. Bir kümede olup diğer kümede olmayan elemanları yeni bir set içinde döndürür.
+
+- "-" operatörü ile fark işlemi yapılabilir.
+
 ```python
 kume1 = {1, 2, 3, 4, 5}
 kume2 = {3, 5, 7, 9, 2}
- 
-print(kume1.union(kume2))         # Birleşim
-print(kume1.intersection(kume2))  # Kesişim
-print(kume1.isdisjoint(kume2))    # Kesişim boş mu? (dolu → False)
-print(kume1.difference(kume2))    # kume1'de olup kume2'de olmayanlar
-print(kume2.difference(kume1))    # kume2'de olup kume1'de olmayanlar
+
+# kume1'de olup kume2'de olmayanlar: difference fonksiyonu
+print(kume1.difference(kume2))   # Çıktı: {1, 4}
+
+# kume2'de olup kume1'de olmayanlar: "-" operatörü
+print(kume2 - kume1)   # Çıktı: {7, 9}
 ```
- 
+
+### difference_update()
+
+- Kümelerdeki fark işlemini yapar. Bir kümede olup diğer kümede olmayan elemanları gösterir. Ancak difference'dan farkı orijinal seti değiştirmesidir.
+
+- Orijinal kümeyi değiştirerek fark işlemi yapmayı "-=" opearatörü ile de yapabiliriz.
+
+```python
+kume1 = {1, 2, 3, 4, 5}
+kume2 = {3, 5, 7, 9, 2}
+
+# Fonksiyonu değişkene atamdan kullandık. Çünkü zaten direkt orijinal kümeyi(kume1) değiştirdi.
+kume1.difference_update(kume2)   # Fonksiyon ile
+print(kume1)   # Çıktı: {1, 4}
+
+kume2 -= kume1   # Operatör ile  
+print(kume2)   # Çıktı: {7, 9}
+
+```
+
+### symetric_difference()
+
+- A-B U B-A işlemini yapar. Yani iki kümenin birbirlerine göre farklarını birleştirir. Geriye bir set döndürür.
+
+- Bu işlemi "^" opeartörü ile de yapabiliriz.
+
+```python
+kume1 = {1,2,3,4,5}
+kume2 = {4,5,6,7,8}
+
+# symetric_difference() fonksiyonu ile
+result = kume1.symetric_difference(kume2)
+print(result)   # Çıktı: {1,2,3,6,7,8}
+
+# "^" operatörü ile
+result = kume1 ^ kume2
+print(result)
+```
+
+### intersection()
+
+- Kümelerin kesişimlerini gösteren fonksiyondur. İki vey daha fazla kümede ortak olan elemanları yeni bir set olarak döndürür.
+
+```python
+kume1 = {1, 2, 3, 4, 5}
+kume2 = {3, 5, 7, 9, 2}
+
+print(kume1.intersection(kume2))   # Çıktı: {3, 5}
+```
+
+### isdisjoint()
+
+- İki kümenin kesişim kümesinin boş olup olmadığını gösteren fonksiyondur. Eğer boşsa True, doluysa False döndürür.
+
+```python
+kume1 = {1, 2, 3, 4, 5}
+kume2 = {3, 5, 7, 9, 2}
+
+# 2, 3 ve 5 elemanları kesişim kümesinde olduğu için False döner.
+print(kume1.isdisjoint(kume2))   # Çıktı: False
+```
+
+### issubset() / issuperset()
+
+- issubset(): Bir küme içinde belli bir alt küme var mı yok mu diye bakar. Varsa True döndürür, yoksa False döndürür.
+
+- issuperset(): Bir küme diğer kümeyi kapsıyor mu diye bakar. Kapsıyorsa True, kapsamıyorsa False döndürür.
+
+```python
+kume = {1,2,3,4,5}
+alt_kume = {2,4}
+
+#issubset()
+print(alt_kume.issubset(kume))   # Çıktı: True
+# "<=" operatörü
+print(alt_kume <= kume)   # Çıktı: True
+
+# issuperset()
+print(kume.issuperset(alt_kume))   # Çıktı: True
+# ">=" operatörü
+print(kume >= alt_kume)   # Çıktı: True
+```
+
 ### frozenset
  
 Değiştirilemez (immutable) bir küme türüdür.
@@ -962,7 +1061,7 @@ print(demet[:4])      # baştan 4. indexe kadar (4 dahil değil)
 print(demet.count("e"))
 ```
 
-- tuple() fonksiyonu ile de tuple oluşturabiliriz. **tuple((eleman1, eleman2, eleman3, ...)) şeklinde kullanılır.
+- tuple() fonksiyonu ile de tuple oluşturabiliriz. **tuple((eleman1, eleman2, eleman3, ...))** şeklinde kullanılır.
 
 ```python
 numbers = tuple((1, 2, 3))
@@ -990,7 +1089,6 @@ numbers = (1, 2, 3, 4, 5)
 print(x)   # Çıktı: 1
 print(y)   # Çıktı: 2
 print(z)   # Çıktı: [3, 4, 5, 6, 7]
-
 ```
 
 ---
