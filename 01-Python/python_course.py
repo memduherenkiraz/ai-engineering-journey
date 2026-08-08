@@ -607,13 +607,90 @@ gh
 
 #=====================================================================================================
 
-ahmet_dersler = {"Matematik", "Fizik", "Algoritma", "Kimya"}
-ayse_dersler = {"Algoritma", "Kimya", "Biyoloji", "Tarih"}
+# ahmet_dersler = {"Matematik", "Fizik", "Algoritma", "Kimya"}
+# ayse_dersler = {"Algoritma", "Kimya", "Biyoloji", "Tarih"}
 
-print(ahmet_dersler & ayse_dersler)
-print(ayse_dersler & ahmet_dersler)
-print(ahmet_dersler - ayse_dersler)
-print(ayse_dersler - ahmet_dersler)
-print(ahmet_dersler | ayse_dersler)
-print(ahmet_dersler ^ ayse_dersler)
-print(ayse_dersler ^ ahmet_dersler)
+# print(ahmet_dersler & ayse_dersler)
+# print(ayse_dersler & ahmet_dersler)
+# print(ahmet_dersler - ayse_dersler)
+# print(ayse_dersler - ahmet_dersler)
+# print(ahmet_dersler | ayse_dersler)
+# print(ahmet_dersler ^ ayse_dersler)
+# print(ayse_dersler ^ ahmet_dersler)
+
+# words = ["Merhaba", "ben", "Eren", "."]
+
+# text = "+".join(words)
+# print(text)
+
+#=====================================================================================================
+
+# Fonksiyon kullanarak 2.dereceden denklemlerin köklerini bulan kod bloğu.
+# from math import sqrt  --------> Burada math kütüphanesinden kök alma işlemini çağırdık.
+
+# from math import sqrt
+
+# def denklem():
+#     print("ax^2 'li terimin katsayısını(a) giriniz: ")
+#     a = float(input())
+#     print("bx 'li terimin katsayısını(b) giriniz: ")
+#     b = float(input())
+#     print("c sabit sayısını giriniz: ")
+#     c = float(input())
+#     delta = (b*b)-4*a*c
+#     if(delta<0):
+#        print("REEL KÖK YOK!")
+#     elif(delta==0):
+#        x= -b/(2*a)
+#        print("TEK KÖK VAR!")
+#        print("KÖK: ",x)
+#     elif(delta>0):
+#        x1= (-b + sqrt(delta))/(2*a)
+#        x2= (-b - sqrt(delta))/(2*a)
+#        print("İKİ FARKLI KÖK VAR!")
+#        print("1. KÖK: " , x1)
+#        print("2.KÖK: " , x2)
+
+# print("Merhaba 2. Dereceden Denklemin Köklerini Bulan Programa Hoşgeldiniz :)")
+# denklem()
+
+#=====================================================================================================
+
+# Recursive Faktöriyel Hesaplama
+
+# def recursive_fac(n):
+#     # Base Case
+#     if n == 0 or n == 1:
+#         return 1
+
+#     # Recursion
+#     return n * recursive_fac(n - 1)
+
+# result = recursive_fac(6)
+# print(result)
+
+# Recursive Fibonacci
+
+# def recursive_fib(n):
+#     if n <= 0:
+#         return 0
+    
+#     if n == 1:
+#         return 1
+
+#     return recursive_fib(n-1) + recursive_fib(n - 2)
+
+# for i in range(7):
+#     print(recursive_fib(i), end=" ")
+
+# Recursive Sum
+
+# def recursive_sum(n):
+#     if n == 1:
+#         return 1
+#     return n + recursive_sum(n - 1)
+
+# print(recursive_sum(6))
+
+#=====================================================================================================
+

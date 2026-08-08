@@ -86,14 +86,16 @@ print(*"Hello my name is Eren. I am 20 years old.", sep='_')
 - **Set** — Küme
 ---
  
-## Değişken Tanımlama ve Type
+### Değişken Tanımlama 
  
 Değişkenler `değişken_adı = değer` şeklinde tanımlanır:
  
 ```python
 ad = "eren"
 ```
- 
+
+### type()
+
 `type()` fonksiyonu ile bir değişkenin veri tipini görebiliriz:
  
 ```python
@@ -176,6 +178,7 @@ x = str(True)
 print(x)
 print(type(x))
 ```
+
 ### Boolean to Integer
 
 ```python
@@ -210,6 +213,17 @@ num1, num2, num3 = num3, num1, num2
 print(num1, num2, num3)
 ```
 
+---
+
+## Len Fonksiyonu
+ 
+`len()` bir string'in uzunluğunu (boşluklar dahil) verir. int ve float için kullanılmaz.
+ 
+```python
+metin2 = "Merhaba benim adım Eren"
+print(len(metin2))
+```
+ 
 ---
 
 ## String Metotları
@@ -259,7 +273,9 @@ print(text.swapcase())
 ```
 
 ### replace()
- 
+
+String içinde belirli bir karakteri başka bir karakterle değiştirir. Örneğin tüm e karakterlerini o karkaterine çevirir.
+
 ```python
 metin6 = "bilgisayar mühendisliği"
 print(metin6.replace("bilgisayar", "elektrik elektronik"))
@@ -312,19 +328,26 @@ text = "Hello World"
 print(text.index("i")) # Çıktı: ValueError -> Çünkü "i" karakteri stringte yok.
 ```
 
---- 
- 
-## Len Fonksiyonu
- 
-`len()` bir string'in uzunluğunu (boşluklar dahil) verir. int ve float için kullanılmaz.
- 
+### join()
+
+Bir iterable nesne(list, tuple, dict, set) içindeki stringleri aralarına belirli bir karakter koyarak tek bir metin haline getirir.
+
+"seperator".join(list) şeklinde kullanılır.
+
 ```python
-metin2 = "Merhaba benim adım Eren"
-print(len(metin2))
+words = ["Merhaba", "ben", "Eren", "."]
+
+text1 = "+".join(words)
+print(text1)   # Çıktı: Merhaba+ben+Eren+.
+
+text2 = " ".join(words)
+print(text2)   # Çıktı: Merhaba ben Eren .
 ```
- 
----
- 
+
+- **Not:** Join fonksiyonunda birleştirilen elemanlar kesinlikle string olmalıdır.
+
+--- 
+
 ## String Formatting
  
 `.format(değişken1, değişken2, ...)` kullanıldığında süslü parantezlere sırayla değerler yerleşir:
@@ -342,7 +365,31 @@ print(f"Bizde hello {myStr} olarak sizde {yourStr} olarak söylenir.")
 ```
  
 ---
+
+## İndexleme
  
+İndeksler her zaman **0**'dan başlar; negatif indexler sondan sayar.
+ 
+```python
+merhaba = "merhaba"
+print(merhaba[0])   # m
+print(merhaba[-1])  # a (sondan 1.)
+ 
+name = "MREN"
+print(name[-1])
+print(name[-2])
+```
+ 
+Belirli bir aralıktaki elemanları almak için:
+ 
+```python
+# değişken[başlangıç : bitiş : artış]
+surname = "kiraz"
+print(surname[0:5:2])
+```
+ 
+---
+
 ## Aritmetik Operatörler
  
 ```python
@@ -376,31 +423,9 @@ a /= 4   # a = a / 4
  
 ---
  
-## İndexleme
- 
-İndeksler her zaman **0**'dan başlar; negatif indexler sondan sayar.
- 
-```python
-merhaba = "merhaba"
-print(merhaba[0])   # m
-print(merhaba[-1])  # a (sondan 1.)
- 
-name = "MREN"
-print(name[-1])
-print(name[-2])
-```
- 
-Belirli bir aralıktaki elemanları almak için:
- 
-```python
-# değişken[başlangıç : bitiş : artış]
-surname = "kiraz"
-print(surname[0:5:2])
-```
- 
----
 
-## Input
+
+## Input Fonksiyonu
  
 `input()` kullanıcıdan **sadece string** alır. int/float almak istersek dönüşüm yapmalıyız.
  
@@ -472,6 +497,7 @@ Listenin belirtilen indeksine belirtilen elemanı ekler. Diğer elemanlar sağa 
 mylist = [12, 13, "kalem", "kağıt", 14, "silgi"]
 mylist.insert(3, True)   # 3. indexe True değerini ekledi. "kağıt" değerinden sonrası sağa kaydı.
 ```
+
 ### extend()
 
 Bir listenin elemanlarını diğer listenin sonuna sırayla ekler.
@@ -494,7 +520,8 @@ last = liste.pop()
 print(liste)
 print(last)
 ```
-### join()
+
+
  
 ### index()
 
@@ -758,23 +785,53 @@ print(flatten)   # Çıktı: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 Süslü parantezlerle tanımlanır; **key (anahtar)** ve **value (değer)** çiftlerinden oluşur. Key sadece string veya int olabilir, value her tür veriyi tutabilir.
  
 ```python
-sözlük = {"apple": "elma", "cheery": "kiraz", "melon": "kavun", "sayı": "rakamlar"}
+sözlük = {"apple": "elma", "cherry": "kiraz", "melon": "kavun"}
  
 print(sözlük["apple"])           # değere anahtarla erişim
 sözlük["strawberry"] = "çilek"   # yeni anahtar ekleme
 sözlük["melon"] = "karpuz"       # mevcut anahtarın değerini güncelleme
- 
-print(sözlük.keys())    # tüm anahtarlar
-print(sözlük.values())  # tüm değerler
-print(sözlük.items())   # anahtar-değer çiftleri
- 
+
 print(len(sözlük))          # anahtar sayısı
-print("apple" in sözlük)    # anahtar var mı? → True/False
- 
-del sözlük["cheery"]              # anahtarı sil
-sözlükKopyası = sözlük.copy()     # sözlüğü kopyala
 ```
- 
+
+- dict() fonksiyonu ile de bir dictionary olulturabiliriz.
+
+```python
+person = dict(name = "Eren", age = 25, isSmart = True)
+
+print(person)
+print(type(person))   # Çıktı: dict
+```
+
+### "in" Operatörü ile Arama
+
+"in" operatörü ile bir sözlük içinde bir key var mı yok mu bulabiliriz. Geriye True veya False döner.
+
+```python
+sözlük = {"apple": "elma", "cherry": "kiraz", "melon": "kavun"}
+
+if "cherry" in sözlük:
+    print("Aradığınız key sözlükte mevcut")
+else:
+    print("Aradığınız key sözlükte mevcut değil")
+```
+
+### keys() / values() / items()
+
+- keys() fonksiyonu bir sözlükteki tüm anahtarları list şeklinde döndürür.
+
+- values() fonksiyonu bir sözlükteki tüm değerleri list şeklinde döndürür.
+
+- items() fonksiyonu bir sözlükteki tüm anahtar-değer çiftlerini list şeklinde döndürür.
+
+```python
+sözlük = {"apple": "elma", "cherry": "kiraz", "melon": "kavun"}
+
+print(sözlük.keys())
+print(sözlük.values())
+print(sözlük.items())
+```
+
 ### get()
  
 Anahtar sözlükte varsa değerini döndürür; yoksa belirttiğimiz varsayılan değeri döndürür (sözlüğü değiştirmez).
@@ -782,19 +839,133 @@ Anahtar sözlükte varsa değerini döndürür; yoksa belirttiğimiz varsayılan
 ```python
 print(sözlük.get("banana", "ANAHTAR MEVCUT DEĞİL"))
 ```
- 
+
+### copy()
+
+Bir sözlüğü farklı bir sözlüğe kopyalamak için kullanılır.
+
+```python
+sözlük = {"apple": "elma", "cherry": "kiraz", "melon": "kavun"}
+
+copyDict = sözlük.copy()
+``` 
+
+### update()
+
+Sözlük içindeki bir key'in değerini değiştirmek veya sözlüğe yeni bir key-value eklemek için kullanılır. Geriye değer döndürmez.
+
+- .update({key: value}) şeklinde kullanılır. {} kullanılması gerekir.
+
+```python
+person = dict(name = "Eren", age = 25, isStudent = True)
+
+person.update({"height": 182})
+print(person)
+```
+
 ### setdefault()
  
 Anahtar sözlükte varsa değerini döndürür; yoksa anahtarı verilen değerle **sözlüğe ekler**.
- 
+
+. setdefault(key, value)
+- İki parametre alır. Birincisi aranacak key, ikinci eğer yoksa key'in alacağı değer. Eğer aranan key dict'te varsa value parametresini vermemize gerek yok.
+
+
 ```python
 meyveler = {"Elma": 5, "Kiraz": 10}
 print(meyveler.setdefault("Elma"))    # zaten var, değerini döndürür
 print(meyveler.setdefault("Muz", 8))  # yok, sözlüğe ekler
 ```
- 
+
+### pop() / popitem()
+
+pop(): Parametre olarak aldığı key'i sözlük içinden siler. Sildiği key'in değerini geri döndürür.
+
+popitem(): Sözlükteki son key-value çiftini kaldırır. Parametre almaz. Geriye sildiği key-value çiftini tuple olarak döndürür.
+
+```python
+person = dict(name = "Eren", age = 25, height = 182, isStudent = True)
+
+popped = person.pop("age")   # "age" keyini sildi değerini popped'a attı.
+print(popped)   # Çıktı: 25
+print(person)
+
+person = dict(name = "Eren", age = 25, height = 1.82, isStudent = True)
+
+popped = person.popitem()   # En sondaki isStudent = True çiftini sildi ve tuple'ın içine attı.
+print(popped)   # Çıktı: ('isStudent', True)
+print(person)
+```
+
+### del
+
+Bir anahtar-değer ikilisini veya komple bir sözlüğü silmek için kullanılır.
+
+```python
+sözlük = {"apple": "elma", "cherry": "kiraz", "melon": "kavun"}
+
+del sözlük["apple"]
+print(sözlük)
+
+del sözlük
+print(sözlük)   # Hata verir.
+```
+
+### clear()
+
+Bir sözlüğün içini boşaltmak için kullanılır. Sonuçta boş bir dict elde edilir.
+
+```python
+sözlük = {"apple": "elma", "cherry": "kiraz", "melon": "kavun"}
+
+sözlük.clear()
+print(sözlük)   # Çıktı: {}
+```
+
+### dict.fromkeys()
+
+Verilen anahtarları ve ortak bir değeri kullanarak yeni bir dictionary oluşturur. İki parametre alır:
+
+- İlk parametre zorunludur. Key ögelerini içeren list veya tuple.
+- İkinci parametre isteğe bağlı. Tüm anahtarlara atanacak ortak değer. Eğer belirtilmezse tüm keylere "None" atanır.
+
+```python
+myKeys = ("score1", "score2", "score3")
+myValue = 100
+
+myDict = dict.fromkeys(myKeys, myValue)
+print(myDict)   # Çıktı: {"score1": 100, "score2": 100, "score3": 100}
+```
+
+- **Not:** Value değerlerini her bir key'e bağımsız şekilde veremiyoruz. Ancak fromkeys'te None olarak oluşturup sonra döngüyle ayrı ayrı verebiliriz.
+
+### Sözlüklerde Döngü Kullanımı
+
+Döngü yapıları kullanarak sözlük içinde hareket edebiliriz.
+
+- Eğer döngüde sadece bir değişken varsa, bu eleman sözlüğün keylerini tutar.
+
+```python
+myDict = {"name": "Eren", "age": 25, "sex": "Male"}
+
+for i in myDict:   # Döngüde bir değişken var: i. i değişkeni sadece sözlüğün keylerini tutar.
+    print(i)   # name, age ve sex keylerini yazdırır.
+
+    # Value'lara erişmek için: Burada i key'leri tuttuğundan myDict'in içindeki o key'e bakar ve value'sunu döndürür.
+    print(myDict[i])
+```
+
+- Eğer döngüde 2 değişken var. İlki her zaman key'leri, ikincisi her zaman value'ları tutar.
+
+```python
+for i, j in myDict:   # Döngüde iki değişken var: i ve j. i keyleri, j valueları tutar.
+    print(i, "-->", j)
+```
+
+- Bunların dışında keys(), values() ve items() fonksiyonlarınıda döngülerde kullanabiliriz.
+
 ---
- 
+
 ## Setler (Kümeler)
  
 Birden çok veri tipini barındırabilen, **tekrarlı elemanları saklamayan** veri yapısıdır.
@@ -1071,7 +1242,7 @@ print(type(numbers))
  
 > Tuple'a yeni eleman ekleme (`demet.add(...)`) veya eleman değiştirme (`demet[8] = ...`) **hata verir**, çünkü tuple immutable'dır.
 
-- Packing ve Unpacking İşlemi
+### Packing ve Unpacking İşlemi
 
 Bir tuple oluşturup içine eleman ekleme işlemine packing denir.
 
@@ -1099,8 +1270,7 @@ print(z)   # Çıktı: [3, 4, 5, 6, 7]
 
 If-Else blokları karar ve koşul yapılarıdır. Bir kodun hangi koşulda ne yapacağını belirtir.
 
-- Eğer birden fazla koşul varsa o zaman "elif" yapısını kullanabiliriz. elif, "else if" gibi çalışır ve
-yanına koşul alır.
+- Eğer birden fazla koşul varsa o zaman "elif" yapısını kullanabiliriz. elif, "else if" gibi çalışır ve yanına koşul alır.
 
 - else yapısı, if ve elif yapılarındaki koşulların hiç biri sağlanmadıysa çalışan yapıdır.
  
@@ -1152,31 +1322,62 @@ print(kucuk)
 x, y = 2, 5
 print("X, Y'DEN BÜYÜK") if x > y else print("X, Y'DEN KÜÇÜK")
 ```
- 
+
 ---
- 
+
+## Range Fonksiyonu
+
+Belirli aralıkta sayı listesi oluşturmak için kullanılır.
+
+`range(start, end, step)` şeklinde kullanılır.
+- start: Aralığın başlangıcını ifade eder. Listeye dahildir.
+- end: Aralığın sonunu ifade eder. Listeye dahil değildir.
+- step: Aralığın adım sayısını belirler. Örneğin 2 ise verilen aralıkta 2'şer atlama yapar.
+
+```python
+for i in range(0, 10, 2):
+    print(i)   # Çıktı: 0 2 4 6 8 --> 0'dan başladı, 10 dahil değil, 2'şer atlama yaptı.
+```
+
+- Eğer range içinde tek bir değer girersek onu end parametresi olarak alır, start = 0 ve step = 1 olarak varsayılır.
+
+```python
+for i in range(5):
+    print(i)   # Çıktı: 0 1 2 3 4
+```
+---
+
+## Enumerate Fonksiyonu
+
+Enumerate fonksiyonu itere edilebilir bir objenin(list, string, tuple vb) hem elemanını hem de indeksini getirir.
+
+- Eğer tek bir değişken kullanılırsa listedeki elemanın indexini ve kendisini tutan bir tuple döndürür.
+
+```python
+mylist = ["apple", "cherry", "banana"]
+
+# Tek bir değişken kullandık (i). i değişkeni tuple döndürecek.
+for i in enumerate(mylist):
+    print(i)   # Çıktı: (0, "apple) (1, "cherry") (2, "banana")
+```
+
+- Eğer iki değişken kullanılırsa ilk değişkene indeks, ikinci değişkene değer atanır.
+
+```python
+mylist = ["apple", "cherry", "banana"]
+
+# i değişkeni indeksleri tutacak, j değişkeni değerleri tutacak.
+for i, j in enumerate(mylist):
+    print(i, "-->", j)   # Çıktı: 0 --> apple  1 --> cherry  2 --> banana
+```
+
+---
+
 ## Döngüler
- 
-### range()
- 
-```python
-for i in range(0, 20, 2):  # 0'dan 20'ye, 2'şer artarak
-    print(i)
-```
- 
-### enumerate()
- 
-İterable bir nesnenin (liste, string, tuple vb.) hem elemanını hem indexini `tuple` olarak döndürür.
- 
-```python
-listeNum = ["Elma", "Kiraz", "Erik", "Karpuz", "Armut"]
-for i in enumerate(listeNum):
-    print(i)
-```
  
 ### While Döngüsü
  
-Belli bir koşul sağlanana kadar çalışır.
+Verilen koşul sağlanana kadar çalışır. Yani koşul True olduğu sürece çalışır. False'a döndüğü an döngü biter.
  
 ```python
 i = 0
@@ -1193,7 +1394,9 @@ while True:  # aksi belirtilmedikçe sonsuz döngü
 ```
  
 ### For Döngüsü
- 
+
+Verilen koşul sağlanana kadar çalışır. Yani koşul True olduğu sürece çalışır. False'a döndüğü an döngü biter.
+
 ```python
 harfler = "abcdefghıjklmnoprstuvyzqwx"
 for harf in harfler:
@@ -1208,13 +1411,19 @@ for karakter in parola:
 if sayac != 0:
     print("parolada türkçe karakter olmamalı!")
 ```
- 
+
 ---
  
 ## Fonksiyonlar
  
-Bir kod bloğunu birden çok yerde kullanabilmemizi sağlayan yapılardır.
- 
+Python fonksiyonları, belirli bir görevi yerine getirmek için yeniden kullanılabilir şekilde tasarlanmış kod bloklarıdır. Kod tekrarını önlemek, programı daha okunabilir ve yönetilebilir hale getirmek için temel yapı taşlarından biridir.
+
+- Pythonda geliştiricinin işini hızlandırmak için oluşturulmuş hazır fonksiyonlara built-in fonk. denir. print, len, type, input gibi fonksiyonlar built-in fonksiyonlardır.
+
+Eğer kendimiz fonksiyon oluşturmak istersek def operatörünü kullanmamız gerekir.
+
+- def fonksiyonAdı():   şeklinde oluşturulur.
+
 ```python
 def ortalama(sayı1, sayı2):
     ortalama = (sayı1 + sayı2) / 2
@@ -1223,23 +1432,45 @@ def ortalama(sayı1, sayı2):
 ortalama(56, 96)
 ```
  
-### İsimsiz / İsimli Parametreler
- 
-Argümanların **sırasına** göre (isimsiz) ya da parametre **adına** göre (isimli) gönderilebilir:
+### İsimsiz Parametreler
+
+İsimsiz parametreler, fonksiyon tanımlanırken ve çağırılırken sırasına (pozisyonuna) göre eşleşen parametrelerdir.
+
+Fonksiyonu çağırırken argümanları sırasıyla, değişken adlarını belirtmeden yazarsınız. İlk argüman birinci parametreye, ikinci argüman ikinci parametreye gider.
  
 ```python
 def islem(p1, p2, p3):
     print(f"Merhaba {p1}. Hoş Geldin!")
     print(f"Çarpım Sonucu: {p2 * p3}")
- 
-islem(isim, s1, s2)                   # isimsiz — sıraya dikkat
-islem(p2=s1, p1=isim, p3=s2)          # isimli — sıra önemsiz
+
+# Fonksiyonu çağırdık ve parametre isimlerini kullanmadık.
+# Bu yüzden argümanları fonksiyona uygun sırayla verdik.
+islem(isim, s1, s2)
 ```
- 
+
+### İsimli Parametreler
+
+İsimli parametreler, fonksiyonu çağırırken hangi verinin hangi parametreye ait olduğunu adını belirterek gönderdiğiniz yöntemdir.
+
+Sıralama önemini yitirir çünkü Python parametre adını doğrudan eşleştirir.
+
+```python
+def islem(p1, p2, p3):
+    print(f"Merhaba {p1}. Hoş Geldin!")
+    print(f"Çarpım Sonucu: {p2 * p3}")
+
+# Fonksiyonu çağırdık ve parametre isimlerini kullandık.
+# Bu yüzden argümanları sırayla vermek zorunda değiliz.
+islem(p2=s1, p1=isim, p3=s2)
+```
+
+
 ### Default (Varsayılan) Parametreler
  
 Argüman verilmezse varsayılan değer kullanılır. Bir parametre varsayılan olduğunda sağındaki tüm parametreler de varsayılan olmalıdır.
- 
+
+Parametre tanımlanırken "=" işareti ile bir değer atanır.
+
 ```python
 def islem(p1='Eren', p2=4, p3=5):
     print(f"Merhaba {p1}. Hoş Geldin!")
@@ -1247,28 +1478,49 @@ def islem(p1='Eren', p2=4, p3=5):
  
 islem()  # hata almadan varsayılan değerleri kullanır
 ```
+
+Python'da varsayılan değer alan (default) parametreler, varsayılan değeri olmayan (pozisyonel) parametrelerden sonra yazılmalıdır. Aksi takdirde Python syntax (sözdizimi) hatası verir.
+
+- Örneğin **def func(a, b=1):** doğru iken **def func(a=1, b):** hatalıdır.
  
-### `*args` — İsimsiz Sonsuz Parametre
- 
+### İsimsiz Sonsuz Parametreler (*args)
+
+Fonksiyona kaç tane pozisyonel (isimsiz) argüman gönderileceği belli olmadığında kullanılır.
+
+Buradaki yıldız (*) işaretinin asıl adı packing (paketleme) işlemidir; gelen tüm argümanları bir araya getirip fonksiyon içinde demet (tuple) haline getirir.
+
+İstediğiniz kadar argümanı sırayla gönderebilirsiniz, fonksiyon bunları bir demet olarak toplar.
+
 ```python
-def func(*isimsiz):
-    print(type(isimsiz))  # tuple olarak tutulur
-    return sum(isimsiz)
- 
-sonuc = func(11, 45, 69, 86, 23, 10, 58, 78)
+def toplama(*args):
+    toplam = 0
+    for sayi in args:
+        toplam += sayi
+    return toplam
+
+# İstediğim kadar argüman gönderebilirim.
+sonuc1 = toplama(11, 45, 69, 86, 23, 10, 58, 78)
+sonuc2 = toplama(15, 82, 93)
 ```
  
-### `**kwargs` — İsimli Sonsuz Parametre
- 
+### İsimli Sonsuz Parametre (**kwargs)
+
+Fonksiyona anahtar-değer (keyword=value) şeklinde, yani isimli olarak kaç tane argüman geleceğini bilmediğimiz durumlarda kullanılır. Buradaki çift yıldız "**", gelen tüm isimli argümanları bir araya getirip fonksiyon içinde bir sözlük (dictionary) haline getirir.
+
+Fonksiyonu çağırırken istediğimiz kadar anahtar=değer çifti verebiliriz.
+
 ```python
-def func(**isimli):
-    print(type(isimli))  # dict olarak tutulur
-    return isimli
+def func(**kwargs):
+    return kwargs
  
-sonuc = func(ad="Eren", soyad="Kiraz", yas=21)
+sonuc = func(ad="Eren", soyad="Kiraz", yas=25)
 ```
- 
-Normal, `*args` ve `**kwargs` birlikte kullanılabilir — sıra her zaman: normal → `*args` → `**kwargs`.
+
+### Normal, *args ve **kwargs Parametrelerinin Beraber Kullanımı
+
+Fonksiyonlarda args ve kwargs parametrelerini aynı anda kullanabiliriz. Hatta normal paramtrelerle beraberde kullanabiliriz.
+
+Sıra her zaman şu şekildedir: Normal → `*args` → `**kwargs`.
  
 ```python
 def func(p1, p2, *args, **kwargs):
@@ -1279,29 +1531,83 @@ def func(p1, p2, *args, **kwargs):
 func(False, True, 1, 2, 3, ad='EREN', soyad='KİRAZ')
 ```
  
-### Tip İpuçları (Type Hints)
- 
+### Docstring ve Type Hints
+
+Docstringler, bir fonksiyonun ne iş yaptığını, hangi parametreleri aldığını, ne döndürdüğünü ve varsa hangi hataları fırlatabileceğini açıklayan resmi dokümantasyon metinleridir. Fonksiyonun hemen altına üçlü tırnak arasında yapılır (""" ... """).
+
+```python
+def toplama(sayı1, sayi2):
+    """
+    Bu fonksiyon alınan iki sayının toplamını hesaplar.
+
+    Parameters:
+        sayi1: İlk sayı (int)
+        sayi2: İkinci sayi (int)
+    
+    Returns:
+        int: Toplam
+    """
+    return sayi1 + sayi2
+```
+
+Python dinamik tipli bir dildir; yani bir değişkene veya fonksiyona hangi veri tipinin geleceğini otomatik olarak anlar. Type Hints, fonksiyona hangi türde veri göndermeniz gerektiğini ve fonksiyonun ne tür veri döndüreceğini açıkça belirtmenizi sağlar.
+
+- Parametrelerden sonra iki nokta üst üste (: veri_tipi) eklenir.
+- Fonksiyonun dönüş tipi ise ok işareti (-> veri_tipi) ile belirtilir.
+
 ```python
 def func(sayi1: int, sayi2: int, sayi3: int) -> int:
     return sayi1 + sayi2 + sayi3
 ```
  
-### Local ve Global Değişkenler
- 
+### Local Değişkenler
+
+Fonksiyon içinde tanımlanan değişkenler local değişkenler olarak 
+tanımlanır. 
+
+- Local değişkenler oluşturulduğu fonksiyona özgüdür ve fonksiyondan çıktıktan sonra bellekten silinir.
+- Local değişkenlere başka yerden erişilemez. 
+- Ayrıca bir fonksiyonda kullanılan parametrelerde localdir. Fonksiyon dışından erişilemez ama başka bir fonksiyonda aynı adlı başka bir parametre oluşturulabilir.
+
 ```python
 def loc():
-    x = 10  # local — fonksiyon dışından erişilemez
-    print(x)
- 
-x = 10  # global — her yerden erişilebilir
-def glo():
-    print(x)
- 
-def hi():
-    global x  # fonksiyon içinde global değişken oluşturma (pek tercih edilmez)
-    x = "Hello"
+    x = 10   # Local Değişken
+    print("Fonksiyon İçi: ", x)
+
+loc()
+print("Fonksiyon Dışı: ", x)   # x local değişken olduğu için erişemedik, hata aldık.
 ```
- 
+
+### Global Değişkenler
+
+Fonksiyonun dışında ana bölümde tanımlanan değişkenler global değişkenler olarak tanımlanır.
+
+- Global değişkenlere her yerden erişilebilir. Fonksiyonlarda da kullanabiliriz.
+
+```python
+x = 10  # Global Değişken
+
+def glo():
+    print("Fonksiyon İçi: ", x)
+
+glo()
+print("Fonksiyon Dışı: ", x)   # x global değişken olduğu için erişebildik. 
+```
+
+### Sabit Değişkenler
+
+Sabit değişkenler, program boyunca değerinin hiç değiştirilmemesi gereken özel değişkenlerdir.
+
+- Sabit değerleri göstermek için özel bir teknik yoktur, ancak geleneksel kural olarak sabit değerlerin tutulduğu değişkenlerin tüm harfleri büyük harfle yazılır.
+- Böylece geliştiriciler bunun bir sabit olduğunu anlar ve değiştirmezler.
+
+```python
+PI_SAYISI = 3.14159
+
+def cember_cevre(r):
+    return 2 * PI_SAYISI * r
+```
+
 ### Pass Deyimi
  
 Boş bir kod bloğunda hata almamak için kullanılır.
@@ -1314,7 +1620,68 @@ func()
 ```
  
 ---
- 
+
+## Recursive Fonksiyonlar
+
+Recursive fonksiyonlar, bir fonksiyonun kendi kendini çağırdığı programlama tekniğidir. Matematikteki tümevarım matığına oldukça benzerdir.
+
+- Ağaç yapıları, veri bilimi algoritmaları ve dosya sistemi gezinmeleri gibi durumlarda recursive kod yazmak çok daha temiz bir yaklaşımdır.
+- Recursive fonksiyonlar okunabilirlik ve temiz kod yazmak için tercih edilebilir ancak fonksiyon sürekli kendini çağırdığında bellekte yer kaplar. Bu da performans ve hız kayıplarına neden olabilir.
+
+Recursive fonksiyon yazarken en kritik nokta durdurma koşuludur(base case).
+Eğer fonksiyon kendi kendini çağırırken belli bir noktada durmazsa, sonsuz döngüye girer ve RecursionError hatasına yol açar.
+
+### Recursive Sum
+
+1'den girilen sayıya kadar olan sayıları recursive bir şekilde toplayalım.
+
+```python
+def recursive_sum(n):
+    if n == 1:
+        return 1
+    return n + recursive_sum(n - 1)
+
+print(recursive_sum(6))
+```
+
+### Faktöriyel
+
+Bir sayının faktöriyeli(n!), 1'den n'e kadar sayıların çarpımıdır.
+
+```python
+def recursive_fac(n):
+    # Base Case
+    if n == 0 or n == 1:
+        return 1
+
+    # Recursion
+    return n * recursive_fac(n - 1)
+
+result = recursive_fac(6)
+print(result)
+```
+
+### Fibonacci
+
+Fibonacci dizisi, her sayının kendisinden önceki iki sayının toplanmasıyla oluştuğu bir seridir.
+- 0, 1, 1, 2, 3, 5, 8, 13, ...
+
+```python
+def recursive_fib(n):
+    if n <= 0:
+        return 0
+    
+    if n == 1:
+        return 1
+
+    return recursive_fib(n-1) + recursive_fib(n - 2)
+
+for i in range(7):
+    print(recursive_fib(i), end=" ")
+```
+
+---
+
 ## Kaçış Dizileri
  
 | Dizi | Anlamı |
